@@ -107,7 +107,7 @@ var questions = [
             currentIndex++;
 
             if (currentIndex <questions.length){
-                
+                setTimeout(function () {answerCheck.innerHTML="";},1000);
                 renderQuestions();
             } else if (currentIndex ===questions.length) {
                 submitScores.setAttribute("style", "display:block");
