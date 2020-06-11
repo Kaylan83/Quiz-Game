@@ -108,23 +108,26 @@ var questions = [
     ol.appendChild(li2);
     ol.appendChild(li3);
     ol.appendChild(li4);
-      
+      // changing the image everytime the question changes
      img.src= questionAdd.gif;
      questionForm.appendChild(questionTitle);
      questionForm.appendChild(ol);
      
     var answers= document.querySelectorAll(".button");
+    // loop over the answers
     for (var i = 0; i < answers.length; i++) {
+        // event listener for the answers buttons, and checking if answer right or wrong
         answers[i].addEventListener("click", function(event){
             event.preventDefault();
             var answerCheck = document.getElementById("answerCheck");
             if (event.currentTarget.innerText === questions[currentIndex].answer) {
-                
+                // if the answer is correct add ten points to the score
                 answerCheck.innerHTML= "Correct";
                 score +=10;
                 scoreEl.innerText = "Your score: " + score;
                 } 
                 else {
+                    // if the answer is wrong remove 10 seconds from the timer
                 answerCheck.innerHTML="Wrong";
                 secondsLeft -= 10;
                 
@@ -134,6 +137,7 @@ var questions = [
             if (currentIndex <questions.length){
                 setTimeout(function () {answerCheck.innerHTML="";},1000);
                 renderQuestions();
+                // end the quiz after the last question
             } else if (currentIndex ===questions.length) {
                 submitScores.setAttribute("style", "display:block");
                 main.setAttribute("style", "display:none");
