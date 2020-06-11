@@ -36,8 +36,7 @@ function rednderHighScores() {
 // The clear button event to clear all high scores from the array and local storage
 clearScores.addEventListener("click", function(event){
     event.preventDefault();
-    console.log("iam clicked")
-    highScores=[];
+     highScores=[];
     // calling the render high scores
     rednderHighScores();
     //calling the save to storage function the empty array

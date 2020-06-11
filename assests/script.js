@@ -187,7 +187,7 @@ function timer (){
 
 // the submit button function to enter the initials and save it with the high score recieved
 submitBtn.addEventListener("click", function scoreRecord(event){
-    event.preventDefault();
+    event.stopPropagation();
     var userInput = UserInt.value.trim();
     console.log(userInput)
     if (userInput !=="") {
@@ -198,7 +198,7 @@ submitBtn.addEventListener("click", function scoreRecord(event){
         init.setAttribute("style", "color:red");
         scoreRecord();
     }
-    location.href = "highscore.html";
+    
 })
 // saving the scores to the local storage with the user initials
 function saveToLS (arr) {
