@@ -1,14 +1,15 @@
+
+
+
+.navBackground {
+    background-image: url("bgr.JPG");
+}
+
 .margin-top {
     margin-top: 100px;
 }
 
-.btn-style {
-    margin-top: 10px;
-    
-}
-button:hover{
-    background-color: teal;
-}
+/* center style */
 .center {
     margin-top: 30px;
     position: relative;
@@ -17,7 +18,7 @@ button:hover{
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
-
+/* styling the timer box */
   #timerBox {
     color: black;
     background-color: white;
@@ -25,7 +26,7 @@ button:hover{
     max-width: 200px;
    display: none;
 }
-
+/* styling the score */
 #yourScore {
     color: black;
     background-color: white;
@@ -34,14 +35,8 @@ button:hover{
     display: none;
 
 }
-a.button {
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-    text-decoration: none;
-    color: initial;
-}
 
+/* hiding the score block */
 #scoreRecord{
  display: none;
 }
@@ -68,7 +63,7 @@ img {
     padding: 0;
     background-color: white;
   }
-  
+  /* styling list items */
   .liStyle {
     height: 50px;
     margin-top: 5px;
@@ -78,4 +73,25 @@ img {
     color: white;
     font-size: 1.5em;
     line-height: 1.5;
-  } */
+  } 
+
+  /* button style */
+  .button {
+    border: none;
+    color:black;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+
+  /* coloring the button when hovering over it */
+button:hover{
+    background-color: #4CAF50; /* Green */
+    color: white;
+}

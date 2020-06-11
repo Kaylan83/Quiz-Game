@@ -1,3 +1,4 @@
+//declaring variables
 var questionForm = document.querySelector("#question");
 var startBtn = document.querySelector("#startQuiz");
 var timerBox = document.querySelector("#timerBox");
@@ -9,9 +10,11 @@ var submitBtn = document.querySelector("#submit");
 var img = document.querySelector("#image");
 var init = document.querySelector("#initials");
 var currentIndex=0;
-var secondsLeft = 70;
+var secondsLeft = 100;
 var score = 0;
-var highScores = [""];
+//empty array for the initials with high scores
+var highScores = [];
+// The questions array
 var questions = [
     {
         title: "Question 1- Book is to Reading as Fork is to: ",
@@ -26,7 +29,7 @@ var questions = [
         gif: "assests/giphy.gif"
     },
     {
-        title: "Which one of the five is least like the other four: ",
+        title: "Which one of the five is least like the other four? ",
         choices: ["Snake", "Dog", "Tiger", "Cow"],
         answer: "Snake",
         gif: "assests/pooh.gif"
@@ -38,33 +41,55 @@ var questions = [
         gif: "assests/tenor.gif"
     },
     {
-        title: "Jack is taller than Peter, and Bill is shorter than Jack. Which of the following statements would be more accurate: ",
+        title: "Jack is taller than Peter, and Bill is shorter than Jack. Which of the following statements would be more accurate? ",
         choices: ["Bill is taller than Peter", "Peter is taller than Bill", "Bill is as tall as Peter", "It is impossible to tell whether Bill or Peter is taller"],
         answer: "It is impossible to tell whether Bill or Peter is taller",
         gif: "assests/health-and-wellbeing_positive-thinking.gif"
     },
     {
-        title: "Nia,  twelve years old, is three times as old as her sister. How old will Nia be when she is twice as old as her sister: ",
+        title: "Nia,  twelve years old, is three times as old as her sister. How old will Nia be when she is twice as old as her sister? ",
         choices: ["15", "18", "16", "20"],
         answer: "16",
-        gif: "assests/LameOrangeBoubou-size_restricted.gif"
+        gif: "assests/DoYouWantCalculator.gif"
     },
     {
         title: " Two people can make 2 bicycles in 2 hours. How many people are needed to make 12 bicycles in 6 hours? ",
         choices: ["4", "2", "12", "8"],
         answer: "4",
-        gif: "assests/DoYouWantCalculator.gif"
+        gif: "assests/Simpson.gif"
     },
+    {
+        title: "What instrument of Minion Stuart in the Minions movie?",
+        choices: ["Super Mega Ukulele","Lute","Guitar","Electric Guitar"],
+        answer:"Super Mega Ukulele",
+        gif:"assests/stuart.gif"
+    },
+    {
+        title: "Which one of the five makes the best comparison?   CAACCAC is to 3113313 as CACAACAC is to:",
+        choices: ["31313113","31311131","31311313","13133313"],
+        answer:"31311313",
+        gif:"assests/LameOrangeBoubou-size_restricted.gif"
+    },
+    {
+        title: "The day after the day after tomorrow is four days before Monday. What day is it today?",
+        choices: ["Thursday","Wednesday","Tuesday","Monday"],
+        answer:"Monday",
+        gif:"assests/Nick.gif"
+    }
   ];
 
 
-
+  // function to appened the questions to the block in the index file
+  // this function also check the answer if it is correct or not and present the next answer
+  // if the answer is correct will show the correct on the block and add 10 points to the score
+  // if the answer is wrong will show wrong on the block and deduct 10 seconds from the counter
   function renderQuestions (){
     scoreEl.setAttribute("style", "display:block;")
     questionForm.innerHTML="";
      var questionAdd = questions[currentIndex];
     var ol = document.createElement("ol");
-    ol.setAttribute("type", "a");
+    
+    ol.type="a";
     var questionTitle = document.createElement("h6");
     questionTitle.innerText = (questionAdd.title);
 
@@ -74,10 +99,10 @@ var questions = [
      var li2 = document.createElement("li");
      var li3 = document.createElement("li");
      var li4 = document.createElement("li");
-     li1.innerHTML = ('<button class= "btn-style">' + questionAdd.choices[0] + "</button>");
-     li2.innerHTML = ('<button class= "btn-style">' + questionAdd.choices[1] + "</button>");
-     li3.innerHTML = ('<button class= "btn-style">' + questionAdd.choices[2] + "</button>");
-     li4.innerHTML = ('<button class= "btn-style">' + questionAdd.choices[3] + "</button>");
+     li1.innerHTML = ('<button class= "button">' + questionAdd.choices[0] + "</button>");
+     li2.innerHTML = ('<button class= "button">' + questionAdd.choices[1] + "</button>");
+     li3.innerHTML = ('<button class= "button">' + questionAdd.choices[2] + "</button>");
+     li4.innerHTML = ('<button class= "button">' + questionAdd.choices[3] + "</button>");
    
     ol.appendChild(li1);
     ol.appendChild(li2);
@@ -88,7 +113,7 @@ var questions = [
      questionForm.appendChild(questionTitle);
      questionForm.appendChild(ol);
      
-    var answers= document.querySelectorAll(".btn-style");
+    var answers= document.querySelectorAll(".button");
     for (var i = 0; i < answers.length; i++) {
         answers[i].addEventListener("click", function(event){
             event.preventDefault();
@@ -120,6 +145,7 @@ var questions = [
     
   }
   
+  // The timer function to set the timer and increase by one second
 function timer (){
     timerBox.setAttribute("style", "display:block;")
     var timerInterval = setInterval(function() {
@@ -132,6 +158,7 @@ function timer (){
           }
     },1000);
     
+    // a function to send a message to the block if the time is up
     function sendMessage() {
         var timesUp = document.createElement("div");
         timesUp.innerHTML = '<h1> Sorry your time is up</h1>'
@@ -144,7 +171,8 @@ function timer (){
 
 
 
-  
+  // The start buttun event to start the quiz 
+  // when clicked call the questions timer functions
   startBtn.addEventListener("click", function(event){
     event.preventDefault();
     renderQuestions();
@@ -154,9 +182,10 @@ function timer (){
 }
 )
 
-getSavedScores();
+// getting the scores from the local storage
 
 
+// the submit button function to enter the initials and save it with the high score recieved
 submitBtn.addEventListener("click", function scoreRecord(event){
     event.preventDefault();
     var userInput = UserInt.value.trim();
@@ -171,18 +200,10 @@ submitBtn.addEventListener("click", function scoreRecord(event){
     }
     location.href = "highscore.html";
 })
-
+// saving the scores to the local storage with the user initials
 function saveToLS (arr) {
     localStorage.setItem("highScores", JSON.stringify(arr))
 }
 
-
-function getSavedScores(){
-     storedScores = JSON.parse(localStorage.getItem("highScores"));
-     if (storedScores !== null) {
-         highScores=storedScores;
-     } 
-   
-}
 
 

@@ -4,9 +4,10 @@ var highScoresForm = document.querySelector("#highScores");
 var clearScores = document.querySelector("#clear")
 
 
-
+// calling the get scores function
 getSavedScores();
 
+// get the scores from locacl storage function
 function getSavedScores(){
     storedScores = JSON.parse(localStorage.getItem("highScores"));
     if (storedScores !== null) {
@@ -16,6 +17,7 @@ function getSavedScores(){
   
 }
 
+// function to append the scores to the high scores file
 function rednderHighScores() {
    
     highScoresForm.innerHTML="";
@@ -31,14 +33,18 @@ function rednderHighScores() {
  }
 }
 
+// The clear button event to clear all high scores from the array and local storage
 clearScores.addEventListener("click", function(event){
     event.preventDefault();
     console.log("iam clicked")
     highScores=[];
+    // calling the render high scores
     rednderHighScores();
+    //calling the save to storage function the empty array
     saveToLS(highScores);
 })
 
+// the save to local storage function
 function saveToLS (arr) {
-    localStorage.setItem("highScores", JSON.stringify(arr))
-}
+     localStorage.setItem("highScores", JSON.stringify(arr))
+ }
