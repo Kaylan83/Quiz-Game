@@ -10,7 +10,7 @@ var submitBtn = document.querySelector("#submit");
 var img = document.querySelector("#image");
 var init = document.querySelector("#initials");
 var currentIndex=0;
-var secondsLeft = 100;
+var secondsLeft = 200;
 var score = 0;
 //empty array for the initials with high scores
 var highScores = [];
